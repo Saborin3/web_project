@@ -1,0 +1,166 @@
+/* =========================================================
+   色の設定は全部ここ(CSS変数)にまとめています。
+   script.js がこの変数の値を書きかえることで、
+   ページ全体の色が一度に変わる仕組みです。
+   ========================================================= */
+:root {
+  --color-bg: #ffffff;       /* 背景 */
+  --color-text: #1a1a1a;     /* 文字 */
+  --color-border: #0072b2;   /* 枠 */
+  --color-link: #0057a3;     /* リンク */
+  --color-visited: #6b3fa0;  /* 訪問済みリンク */
+}
+
+/* ---------- ページ全体 ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0 16px;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.site-header,
+.panel,
+.content,
+.site-footer {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+h1 { font-size: 1.6rem; line-height: 1.4; }
+h2 { font-size: 1.3rem; margin-top: 2em; }
+h3 { font-size: 1.05rem; margin: 1.5em 0 0.5em; }
+
+/* ---------- リンク ---------- */
+/* 色だけで区別しないよう、下線を必ずつける */
+a {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+a:visited {
+  color: var(--color-visited);
+}
+
+/* キーボードで選択中の場所を太い枠で目立たせる */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--color-text);
+  outline-offset: 3px;
+}
+
+/* 「本文へスキップ」リンク:ふだんは隠して、Tabキーで表示 */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+.skip-link:focus {
+  left: 16px;
+  top: 16px;
+  padding: 8px 12px;
+  background-color: var(--color-bg);
+}
+
+/* ---------- 設定パネル ---------- */
+.panel {
+  margin-top: 1em;
+  padding: 1em 1.2em;
+  border: 3px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.panel h2 {
+  margin-top: 0;
+}
+
+.note {
+  font-size: 0.95rem;
+}
+
+/* プリセットボタンの並び */
+.preset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ボタン共通の見た目 */
+.preset-buttons button,
+.reset-button {
+  padding: 8px 14px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  border: 2px solid var(--color-border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* 今選ばれているプリセット:色ではなく太字+二重線で示す */
+.preset-buttons button[aria-pressed="true"] {
+  font-weight: bold;
+  border-style: double;
+  border-width: 5px;
+}
+
+/* 色選択の並び */
+.color-pickers {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.color-pickers label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.color-pickers input[type="color"] {
+  width: 48px;
+  height: 36px;
+  padding: 0;
+  border: 2px solid var(--color-text);
+  border-radius: 4px;
+  background: none;
+  cursor: pointer;
+}
+
+/* コントラスト比の結果一覧 */
+.contrast-results {
+  list-style: none;
+  padding: 0;
+}
+
+.contrast-results li {
+  padding: 4px 0;
+}
+
+.reset-button {
+  margin-top: 0.5em;
+}
+
+/* ---------- 本文 ---------- */
+.box {
+  margin: 1.5em 0;
+  padding: 0.5em 1.2em;
+  border: 3px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.site-footer {
+  margin-top: 3em;
+  padding: 1em 0;
+  border-top: 2px solid var(--color-border);
+  font-size: 0.9rem;
+}
